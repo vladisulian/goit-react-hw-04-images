@@ -13,7 +13,7 @@ export const App = () => {
   const [currentSearch, setCurrentSearch] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [modalImage, setModalImage] = useState(null);
+  const [modalImageStorage, setModalImageStorage] = useState(null);
   const [loadMoreButton, setLoadMoreButton] = useState(false);
   const [page, setPage] = useState(1);
 
@@ -41,7 +41,7 @@ export const App = () => {
     setImages([]);
     setCurrentSearch(null);
     setShowModal(false);
-    setModalImage(null);
+    setModalImageStorage(null);
     setPage(1);
   }, []);
 
@@ -49,7 +49,7 @@ export const App = () => {
     setImages([]);
     setCurrentSearch(data);
     setShowModal(false);
-    setModalImage(null);
+    setModalImageStorage(null);
     setPage(1);
   };
 
@@ -58,11 +58,11 @@ export const App = () => {
   };
 
   const toggleModal = modalImage => {
-    setShowModal(prevState => !prevState.showModal);
-    setModalImage(null);
-
+    // do not change priority!!!
+    setShowModal(prevState => !prevState);
+    setModalImageStorage(null);
     if (modalImage) {
-      setModalImage(modalImage);
+      setModalImageStorage(modalImage);
     }
   };
 
@@ -86,7 +86,12 @@ export const App = () => {
       {showModal && (
         <Modal
           onClose={toggleModal}
-          children={<img src={modalImage.webformatURL} alt={modalImage.tags} />}
+          modalImage={
+            <img
+              src={modalImageStorage.webformatURL}
+              alt={modalImageStorage.tags}
+            />
+          }
         ></Modal>
       )}
       {loadMoreButton && <LoadMoreButton loadMore={loadMore} />}
