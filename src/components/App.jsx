@@ -68,7 +68,7 @@ export const App = () => {
 
   return (
     <div className="ImageGalleryFind">
-      <Searchbar onSubmit={onFormSubmitFetch} />
+      <Searchbar Submit={onFormSubmitFetch} />
       <ImageGalleryList>
         <ImageGalleryItem images={images} onClick={toggleModal} />
       </ImageGalleryList>
