@@ -56,3 +56,4 @@ export const Modal = ({ onClose, modalImage }) => {
 //     );
 //   }
 // }
+ 
