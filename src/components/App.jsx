@@ -18,13 +18,13 @@ export const App = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if (currentSearch !== null) {
+    if (currentSearch) {
+      setIsLoading(true);
       fetchImages(currentSearch, page)
         .then(foundData => {
           if (foundData.hits === 0) {
             console.log(foundData);
           }
-          setIsLoading(true);
           setImages(prevstate => [...prevstate, ...foundData.hits]);
           setLoadMoreButton(page < Math.ceil(foundData.total / 12));
         })
